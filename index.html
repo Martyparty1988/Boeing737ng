@@ -8,270 +8,76 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>B737NG Technický průvodce</h1>
-            <nav>
-                <button onclick="navigateTo('welcome')" class="nav-btn active">Úvod</button>
-                <button onclick="navigateTo('cockpit')" class="nav-btn">Kokpit</button>
-                <button onclick="navigateTo('checklist')" class="nav-btn">Checklisty</button>
-                <button onclick="navigateTo('systems')" class="nav-btn">Systémy</button>
-            </nav>
-        </header>
+        <h1>B737NG Technický průvodce</h1>
+        
+        <nav class="nav-menu">
+            <button onclick="showSection('uvod')" class="nav-btn active">Úvod</button>
+            <button onclick="showSection('kokpit')" class="nav-btn">Kokpit</button>
+            <button onclick="showSection('checklisty')" class="nav-btn">Checklisty</button>
+            <button onclick="showSection('systemy')" class="nav-btn">Systémy</button>
+        </nav>
 
-        <main id="content">
-            <!-- Obsah bude dynamicky načítán pomocí JavaScriptu -->
-            <div id="welcome-section" class="section active">
-                <h2>Vítejte v průvodci B737NG</h2>
-                <p>Vyberte sekci z menu výše pro zobrazení detailních informací o letadle.</p>
-            </div>
+        <main>
+            <section id="uvod" class="content-section active">
+                <h2>Úvod</h2>
+                <p>Vítejte v technickém průvodci B737NG.</p>
+            </section>
 
-            <div id="cockpit-section" class="section">
-                <h2>Schéma kokpitu B737NG</h2>
-                <div class="cockpit-container">
-                    <svg viewBox="0 0 800 600" class="cockpit-svg">
-                        <!-- Základní layout kokpitu -->
-                        <rect x="100" y="100" width="600" height="400" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+            <section id="kokpit" class="content-section">
+                <h2>Kokpit</h2>
+                <p class="section-info">Klikněte na část kokpitu pro více informací:</p>
+                
+                <div class="kokpit-container">
+                    <svg viewBox="0 0 400 400" class="kokpit-svg">
+                        <rect x="100" y="50" width="200" height="40" class="kokpit-element" data-panel="overhead"/>
+                        <text x="200" y="75">Overhead</text>
                         
-                        <!-- Captain's Side -->
-                        <g class="captain-section" onclick="showInfo('captain')">
-                            <rect x="150" y="150" width="200" height="160" fill="#e0e0e0" stroke="#666"/>
-                            <text x="170" y="180" class="panel-label">Kapitán PFD</text>
-                            <rect x="150" y="320" width="200" height="120" fill="#d0d0d0" stroke="#666"/>
-                            <text x="170" y="350" class="panel-label">Kapitán ND</text>
-                        </g>
-
-                        <!-- First Officer's Side -->
-                        <g class="fo-section" onclick="showInfo('fo')">
-                            <rect x="450" y="150" width="200" height="160" fill="#e0e0e0" stroke="#666"/>
-                            <text x="470" y="180" class="panel-label">F/O PFD</text>
-                            <rect x="450" y="320" width="200" height="120" fill="#d0d0d0" stroke="#666"/>
-                            <text x="470" y="350" class="panel-label">F/O ND</text>
-                        </g>
-
-                        <!-- Center Panel -->
-                        <g class="center-section" onclick="showInfo('center')">
-                            <rect x="350" y="150" width="100" height="290" fill="#c0c0c0" stroke="#666"/>
-                            <text x="360" y="180" class="panel-label">MCP</text>
-                            <rect x="360" y="200" width="80" height="40" fill="#a0a0a0" stroke="#666"/>
-                            <text x="370" y="225" class="panel-label">EFIS</text>
-                        </g>
-
-                        <!-- Overhead Panel -->
-                        <g class="overhead-section" onclick="showInfo('overhead')">
-                            <rect x="150" y="50" width="500" height="40" fill="#b0b0b0" stroke="#666"/>
-                            <text x="320" y="75" class="panel-label">Overhead Panel</text>
-                        </g>
+                        <rect x="100" y="150" width="80" height="80" class="kokpit-element" data-panel="captain"/>
+                        <text x="140" y="190">Kapitán</text>
+                        
+                        <rect x="220" y="150" width="80" height="80" class="kokpit-element" data-panel="fo"/>
+                        <text x="260" y="190">1. důstojník</text>
+                        
+                        <rect x="160" y="250" width="80" height="80" class="kokpit-element" data-panel="central"/>
+                        <text x="200" y="290">Centrální</text>
                     </svg>
                 </div>
-                <div id="panel-info" class="info-box">
-                    Klikněte na část kokpitu pro zobrazení informací
-                </div>
-            </div>
+                <div id="panel-info" class="info-box"></div>
+            </section>
 
-            <div id="checklist-section" class="section">
+            <section id="checklisty" class="content-section">
                 <h2>Checklisty</h2>
                 <div class="checklist-container">
-                    <!-- Před letem -->
-                    <div class="checklist-category">
+                    <div class="checklist-group">
                         <h3>Před letem</h3>
                         <div class="checklist-items">
-                            <div class="checklist-item">
-                                <input type="checkbox" id="pre1">
-                                <label for="pre1">Palivové čerpadlo - ON</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="pre2">
-                                <label for="pre2">Externí napájení - ODPOJENO</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="pre3">
-                                <label for="pre3">APU - SPUŠTĚNO</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="pre4">
-                                <label for="pre4">Hydraulické pumpy - ON</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="pre5">
-                                <label for="pre5">FMC - NAPROGRAMOVÁNO</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Během letu -->
-                    <div class="checklist-category">
-                        <h3>Během letu</h3>
-                        <div class="checklist-items">
-                            <div class="checklist-item">
-                                <input type="checkbox" id="flight1">
-                                <label for="flight1">Výška - KONTROLA</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="flight2">
-                                <label for="flight2">Rychlost - NASTAVENA</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="flight3">
-                                <label for="flight3">Autopilot - AKTIVNÍ</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="flight4">
-                                <label for="flight4">Navigace - KONTROLA</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="flight5">
-                                <label for="flight5">Spotřeba paliva - MONITORING</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Po přistání -->
-                    <div class="checklist-category">
-                        <h3>Po přistání</h3>
-                        <div class="checklist-items">
-                            <div class="checklist-item">
-                                <input type="checkbox" id="post1">
-                                <label for="post1">APU - SPUŠTĚNO</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="post2">
-                                <label for="post2">Motory - VYPNUTY</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="post3">
-                                <label for="post3">Hydraulika - OFF</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="post4">
-                                <label for="post4">Parkovací brzda - AKTIVNÍ</label>
-                            </div>
-                            <div class="checklist-item">
-                                <input type="checkbox" id="post5">
-                                <label for="post5">Externí napájení - PŘIPOJENO</label>
-                            </div>
+                            <label class="checklist-item">
+                                <input type="checkbox"> Palivové čerpadlo ON
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox"> Generátor OFF
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox"> Autopilot ON
+                            </label>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div id="systems-section" class="section">
-                <h2>Systémy B737NG</h2>
-                <div class="systems-container">
-                    <!-- Hydraulický systém -->
-                    <section class="system-section">
+            <section id="systemy" class="content-section">
+                <h2>Systémy</h2>
+                <div class="system-container">
+                    <div class="system-item">
                         <h3>Hydraulický systém</h3>
-                        <p>B737NG využívá tři nezávislé hydraulické systémy:</p>
-                        <ul>
-                            <li>Systém A (3000 PSI)
-                                <ul>
-                                    <li>Levý motor - pohon pumpy</li>
-                                    <li>Elektrická pumpa - záloha</li>
-                                    <li>Ovládá: část křidélek, stabilizátor, směrovka</li>
-                                </ul>
-                            </li>
-                            <li>Systém B (3000 PSI)
-                                <ul>
-                                    <li>Pravý motor - pohon pumpy</li>
-                                    <li>Elektrická pumpa - záloha</li>
-                                    <li>Ovládá: část křidélek, výškovka, klapky</li>
-                                </ul>
-                            </li>
-                            <li>Standby systém
-                                <ul>
-                                    <li>Elektrická pumpa</li>
-                                    <li>Ruční pumpa - nouzové ovládání</li>
-                                    <li>Ovládá: základní řízení pro nouzové případy</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <!-- Elektrický systém -->
-                    <section class="system-section">
+                        <p>Systém A, B a Standby</p>
+                    </div>
+                    <div class="system-item">
                         <h3>Elektrický systém</h3>
-                        <p>Hlavní komponenty elektrického systému:</p>
-                        <ul>
-                            <li>Hlavní zdroje
-                                <ul>
-                                    <li>2x generátor na motorech (115V AC)</li>
-                                    <li>1x APU generátor</li>
-                                    <li>Externí napájení</li>
-                                </ul>
-                            </li>
-                            <li>Záložní zdroje
-                                <ul>
-                                    <li>Hlavní baterie (24V DC)</li>
-                                    <li>APU baterie</li>
-                                    <li>Standby baterie</li>
-                                </ul>
-                            </li>
-                            <li>Distribuce
-                                <ul>
-                                    <li>AC sběrnice (115V AC)</li>
-                                    <li>DC sběrnice (28V DC)</li>
-                                    <li>Standby sběrnice</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <!-- Palivový systém -->
-                    <section class="system-section">
-                        <h3>Palivový systém</h3>
-                        <p>Konfigurace palivových nádrží:</p>
-                        <ul>
-                            <li>Hlavní nádrže
-                                <ul>
-                                    <li>Levá nádrž: 2956 kg</li>
-                                    <li>Pravá nádrž: 2956 kg</li>
-                                </ul>
-                            </li>
-                            <li>Centrální nádrž
-                                <ul>
-                                    <li>Kapacita: 5137 kg</li>
-                                    <li>Automatické přečerpávání</li>
-                                </ul>
-                            </li>
-                            <li>Palivové pumpy
-                                <ul>
-                                    <li>2x pumpa v každé hlavní nádrži</li>
-                                    <li>2x pumpa v centrální nádrži</li>
-                                    <li>Crossfeed ventil pro přečerpávání</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </section>
-
-                    <!-- Klimatizační systém -->
-                    <section class="system-section">
-                        <h3>Klimatizační systém</h3>
-                        <p>Součásti a funkce klimatizace:</p>
-                        <ul>
-                            <li>Zdroje vzduchu
-                                <ul>
-                                    <li>Motor bleed air</li>
-                                    <li>APU bleed air</li>
-                                    <li>Externí zdroj vzduchu</li>
-                                </ul>
-                            </li>
-                            <li>Zóny
-                                <ul>
-                                    <li>Kokpit</li>
-                                    <li>Přední kabina</li>
-                                    <li>Zadní kabina</li>
-                                </ul>
-                            </li>
-                            <li>Řízení
-                                <ul>
-                                    <li>Automatická regulace teploty</li>
-                                    <li>Regulace průtoku vzduchu</li>
-                                    <li>Přetlakování kabiny</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </section>
+                        <p>Generátory a baterie</p>
+                    </div>
                 </div>
-            </div>
+            </section>
         </main>
     </div>
     <script src="app.js"></script>
