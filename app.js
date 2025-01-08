@@ -1,96 +1,76 @@
-// Navigace mezi sekcemi
-function navigateTo(section) {
-    // Skrytí všech sekcí
-    document.querySelectorAll('.section').forEach(el => {
-        el.classList.remove('active');
+// Informace o částech kokpitu
+const panelInfo = {
+    overhead: 'Overhead Panel: Obsahuje ovládací prvky elektrického, hydraulického a palivového systému.',
+    captain: 'Stanoviště kapitána: Hlavní letové přístroje a ovládací prvky.',
+    fo: 'Stanoviště 1. důstojníka: Sekundární sada letových přístrojů.',
+    central: 'Centrální panel: Mode Control Panel (MCP) a další sdílené ovládací prvky.'
+};
+
+// Přepínání mezi sekcemi
+function showSection(sectionId) {
+    // Deaktivace všech sekcí a tlačítek
+    document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
     });
-    
-    // Zobrazení vybrané sekce
-    const selectedSection = document.getElementById(section + '-section');
-    if (selectedSection) {
-        selectedSection.classList.add('active');
-    }
-    
-    // Aktualizace aktivního tlačítka
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    const activeBtn = Array.from(document.querySelectorAll('.nav-btn'))
-        .find(btn => btn.onclick.toString().includes(section));
-    if (activeBtn) {
-        activeBtn.classList.add('active');
+
+    // Aktivace vybrané sekce
+    const selectedSection = document.getElementById(sectionId);
+    if (selectedSection) {
+        selectedSection.classList.add('active');
+    }
+
+    // Aktivace příslušného tlačítka
+    const selectedBtn = Array.from(document.querySelectorAll('.nav-btn'))
+        .find(btn => btn.textContent.toLowerCase().includes(sectionId));
+    if (selectedBtn) {
+        selectedBtn.classList.add('active');
     }
 }
 
-// Informace o částech kokpitu
-const cockpitInfo = {
-    captain: {
-        title: 'Stanoviště kapitána',
-        description: 'Hlavní letové přístroje včetně PFD (Primary Flight Display) a ND (Navigation Display). ' +
-                    'Obsahuje také záložní přístroje pro případ selhání elektroniky.'
-    },
-    fo: {
-        title: 'Stanoviště prvního důstojníka',
-        description: 'Zrcadlové uspořádání přístrojů jako na straně kapitána. ' +
-                    'Umožňuje plnou kontrolu letadla z pozice prvního důstojníka.'
-    },
-    center: {
-        title: 'Centrální panel',
-        description: 'Mode Control Panel (MCP) pro ovládání autopilota a Flight Management Computer (FMC) ' +
-                    'pro programování letové trasy a navigaci.'
-    },
-    overhead: {
-        title: 'Overhead panel',
-        description: 'Obsahuje ovládací prvky všech hlavních systémů letadla: elektrický, hydraulický, ' +
-                    'palivový, klimatizace a další.'
-    }
-};
+// Inicializace interaktivních prvků kokpitu
+function initKokpit() {
+    const elements = document.querySelectorAll('.kokpit-element');
+    const infoBox = document.getElementById('panel-info');
 
-// Zobrazení informací o části kokpitu
-function showInfo(section) {
-    const info = cockpitInfo[section];
-    if (info) {
-        const infoBox = document.getElementById('panel-info');
-        infoBox.innerHTML = `<strong>${info.title}</strong><br>${info.description}`;
-    }
+    elements.forEach(element => {
+        element.addEventListener('click', () => {
+            const panelType = element.getAttribute('data-panel');
+            if (panelType && panelInfo[panelType]) {
+                infoBox.textContent = panelInfo[panelType];
+            }
+        });
+    });
 }
 
 // Ukládání stavu checklistů
-function saveChecklistState() {
+function initChecklists() {
     const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
-    const state = {};
     
+    // Načtení uložených stavů
     checkboxes.forEach(checkbox => {
-        state[checkbox.id] = checkbox.checked;
+        const savedState = localStorage.getItem(`checklist-${checkbox.parentElement.textContent.trim()}`);
+        if (savedState === 'true') {
+            checkbox.checked = true;
+        }
     });
-    
-    localStorage.setItem('checklistState', JSON.stringify(state));
-}
 
-// Načtení stavu checklistů
-function loadChecklistState() {
-    const saved = localStorage.getItem('checklistState');
-    if (saved) {
-        const state = JSON.parse(saved);
-        Object.entries(state).forEach(([id, checked]) => {
-            const checkbox = document.getElementById(id);
-            if (checkbox) {
-                checkbox.checked = checked;
-            }
+    // Přidání event listenerů pro ukládání
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            localStorage.setItem(
+                `checklist-${checkbox.parentElement.textContent.trim()}`,
+                checkbox.checked
+            );
         });
-    }
+    });
 }
 
-// Event listeners
+// Inicializace při načtení stránky
 document.addEventListener('DOMContentLoaded', () => {
-    // Načtení uloženého stavu checklistů
-    loadChecklistState();
-    
-    // Přidání event listenerů pro ukládání stavu checklistů
-    document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', saveChecklistState);
-    });
-    
-    // Aktivace první sekce
-    navigateTo('welcome');
+    initKokpit();
+    initChecklists();
+    showSection('uvod');
 });
