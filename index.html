@@ -1,86 +1,150 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B737NG Technický průvodce</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B737NG Technický průvodce</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>B737NG Technický průvodce</h1>
-        
-        <div class="nav-menu">
-            <button onclick="showSection('uvod')" class="nav-btn active">Úvod</button>
-            <button onclick="showSection('kokpit')" class="nav-btn">Kokpit</button>
-            <button onclick="showSection('ovladani')" class="nav-btn">Ovládání</button>
-            <button onclick="showSection('checklisty')" class="nav-btn">Checklisty</button>
-            <button onclick="showSection('systemy')" class="nav-btn">Systémy</button>
-        </div>
+  <header>
+    <h1>B737NG Technický průvodce</h1>
+    <nav>
+      <ul>
+        <li><a href="#cockpit">Interaktivní kokpit</a></li>
+        <li><a href="#controls">Ovládací prvky</a></li>
+        <li><a href="#checklists">Elektronické checklisty</a></li>
+        <li><a href="#systems">Systémy letadla</a></li>
+      </ul>
+    </nav>
+  </header>
 
-        <div id="uvod" class="content-section active">
-            <h2>Úvod</h2>
-            <p>Vítejte v technickém průvodci B737NG.</p>
+  <main>
+    <!-- Interaktivní kokpit -->
+    <section id="cockpit">
+      <h2>1. Interaktivní kokpit</h2>
+      <p>
+        Níže je jednoduchá textová „mapa“ kokpitu Boeingu 737 NG. Kliknutím na vybrané části
+        zobrazíte detailnější popis.
+      </p>
+      <div class="cockpit-map">
+        <!-- Textová reprezentace schématu kokpitu -->
+        <div class="cockpit-row">
+          <span class="cockpit-area clickable" data-area="overhead">[ Overhead panel ]</span>
         </div>
+        <div class="cockpit-row">
+          <span class="cockpit-area clickable" data-area="captain">[ Stanoviště kapitána ]</span>
+          <span class="cockpit-area clickable" data-area="central">[ Centrální panel ]</span>
+          <span class="cockpit-area clickable" data-area="fo">[ Stanoviště prvního důstojníka ]</span>
+        </div>
+      </div>
+      <div id="cockpit-detail" class="detail-box" hidden>
+        <h3>Detail kokpitu</h3>
+        <p class="detail-text">Zde se zobrazí bližší informace k vybrané oblasti.</p>
+        <button class="close-btn" data-close>✕ Zavřít</button>
+      </div>
+    </section>
 
-        <div id="kokpit" class="content-section">
-            <h2>Kokpit</h2>
-            <p>Klikněte na část kokpitu pro více informací:</p>
-            <div class="kokpit-container">
-                <svg viewBox="0 0 400 400">
-                    <rect x="100" y="50" width="200" height="40" class="kokpit-element" data-panel="overhead"/>
-                    <text x="200" y="75">Overhead</text>
-                    <rect x="100" y="150" width="80" height="80" class="kokpit-element" data-panel="captain"/>
-                    <text x="140" y="190">Kapitán</text>
-                    <rect x="220" y="150" width="80" height="80" class="kokpit-element" data-panel="fo"/>
-                    <text x="260" y="190">1. důstojník</text>
-                    <rect x="160" y="250" width="80" height="80" class="kokpit-element" data-panel="central"/>
-                    <text x="200" y="290">Centrální</text>
-                </svg>
-            </div>
-            <div id="panel-info" class="info-box"></div>
-        </div>
+    <!-- Ovládací prvky -->
+    <section id="controls">
+      <h2>2. Ovládací prvky</h2>
+      <ul>
+        <li>Hlavní řízení (Control Column, Rudder Pedals)</li>
+        <li>Ovládání výkonu (Thrust Levers, Speedbrake)</li>
+        <li>Autopilot (MCP Panel)</li>
+        <li>Konfigurace letadla (Flaps, Landing Gear)</li>
+      </ul>
+      <button class="toggle-btn" data-toggle="controls">Zobrazit podrobnosti</button>
+      <div class="toggle-content" id="controls-details" hidden>
+        <p>
+          <strong>Hlavní řízení:</strong> Slouží k ovládání náklonu (roll) a náběhu (pitch) letounu.
+          <br>
+          <strong>Rudder Pedals:</strong> Ovládají směr (yaw) letounu.
+        </p>
+        <p>
+          <strong>Thrust Levers:</strong> Řídí výkon motorů.
+          <br>
+          <strong>Speedbrake:</strong> Slouží ke snížení vztlaku a zvýšení odporu.
+        </p>
+        <p>
+          <strong>Autopilot (MCP Panel):</strong> Nastavení režimů letu (Heading, Altitude, Speed atd.).
+        </p>
+        <p>
+          <strong>Flaps a Landing Gear:</strong> Konfigurace křídel pro různé fáze letu
+          a ovládání podvozku.
+        </p>
+      </div>
+    </section>
 
-        <div id="ovladani" class="content-section">
-            <h2>Ovládání</h2>
-            <div class="control-group">
-                <h3>Hlavní ovládací prvky</h3>
-                <div class="control-item">
-                    <div class="control-name">Control Column</div>
-                    <ul>
-                        <li>Dopředu: Klesání</li>
-                        <li>Dozadu: Stoupání</li>
-                        <li>Do stran: Náklon</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <!-- Elektronické checklisty -->
+    <section id="checklists">
+      <h2>3. Elektronické checklisty</h2>
+      <p>
+        Pro různé fáze letu (před letem, během letu, po přistání) můžete využít naše
+        interaktivní checklisty. U každého kroku si zaškrtněte, zda je splněn.
+      </p>
 
-        <div id="checklisty" class="content-section">
-            <h2>Checklisty</h2>
-            <div class="checklist-group">
-                <h3>Před letem</h3>
-                <div class="checklist-items">
-                    <label class="checklist-item">
-                        <input type="checkbox">
-                        <span>Palivové čerpadlo ON</span>
-                    </label>
-                    <label class="checklist-item">
-                        <input type="checkbox">
-                        <span>Generátor OFF</span>
-                    </label>
-                </div>
-            </div>
-        </div>
+      <div class="checklist">
+        <h3>Před letem</h3>
+        <ul>
+          <li><label><input type="checkbox" data-checklist="preflight"> Zkontrolovat palivo</label></li>
+          <li><label><input type="checkbox" data-checklist="preflight"> Nastavit FMC</label></li>
+          <li><label><input type="checkbox" data-checklist="preflight"> Projít overhead panel</label></li>
+        </ul>
+      </div>
 
-        <div id="systemy" class="content-section">
-            <h2>Systémy</h2>
-            <div class="system-item">
-                <h3>Hydraulický systém</h3>
-                <p>Systém A, B a Standby</p>
-            </div>
-        </div>
-    </div>
-    <script src="app.js"></script>
+      <div class="checklist">
+        <h3>Během letu</h3>
+        <ul>
+          <li><label><input type="checkbox" data-checklist="inflight"> Zkontrolovat výšku a rychlost</label></li>
+          <li><label><input type="checkbox" data-checklist="inflight"> Sledovat stav motorů</label></li>
+        </ul>
+      </div>
+
+      <div class="checklist">
+        <h3>Po přistání</h3>
+        <ul>
+          <li><label><input type="checkbox" data-checklist="postflight"> Vypnout nepotřebné systémy</label></li>
+          <li><label><input type="checkbox" data-checklist="postflight"> Zaznamenat letové údaje</label></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Systémy letadla -->
+    <section id="systems">
+      <h2>4. Systémy letadla</h2>
+      <ul>
+        <li>Hydraulický systém</li>
+        <li>Elektrický systém</li>
+        <li>Palivový systém</li>
+        <li>Klimatizace a přetlakování</li>
+      </ul>
+      <button class="toggle-btn" data-toggle="systems">Zobrazit detaily</button>
+      <div class="toggle-content" id="systems-details" hidden>
+        <p><strong>Hydraulický systém:</strong> Zajišťuje ovládání klíčových prvků jako jsou klapky, brzdy a řízení.</p>
+        <p><strong>Elektrický systém:</strong> Napájí avioniku, osvětlení, a řadu dalších systémů na palubě.</p>
+        <p><strong>Palivový systém:</strong> Systém nádrží a čerpadel pro zásobování motorů palivem.</p>
+        <p><strong>Klimatizace a přetlakování:</strong> Udržuje pohodlnou teplotu a tlak v kabině.</p>
+      </div>
+    </section>
+
+    <!-- Plánovaná vylepšení -->
+    <section>
+      <h2>Plánovaná vylepšení</h2>
+      <ul>
+        <li>3D model kokpitu</li>
+        <li>Detailnější animace ovládacích prvků</li>
+        <li>Rozšířená databáze systémů</li>
+        <li>Exportování checklistů</li>
+        <li>Vícejazyčná podpora</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 - B737NG Technický průvodce</p>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
