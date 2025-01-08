@@ -2,7 +2,8 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff">
     <title>B737NG Technický průvodce</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -11,24 +12,22 @@
         <h1>B737NG Technický průvodce</h1>
         
         <nav class="nav-menu">
-            <button onclick="showSection('uvod')" class="nav-btn active">Úvod</button>
-            <button onclick="showSection('kokpit')" class="nav-btn">Kokpit</button>
-            <button onclick="showSection('ovladani')" class="nav-btn">Ovládání</button>
-            <button onclick="showSection('checklisty')" class="nav-btn">Checklisty</button>
-            <button onclick="showSection('systemy')" class="nav-btn">Systémy</button>
+            <a href="#" class="nav-btn active" onclick="showSection('uvod'); return false">Úvod</a>
+            <a href="#" class="nav-btn" onclick="showSection('kokpit'); return false">Kokpit</a>
+            <a href="#" class="nav-btn" onclick="showSection('ovladani'); return false">Ovládání</a>
+            <a href="#" class="nav-btn" onclick="showSection('checklisty'); return false">Checklisty</a>
+            <a href="#" class="nav-btn" onclick="showSection('systemy'); return false">Systémy</a>
         </nav>
 
         <main>
-            <!-- Úvod -->
             <section id="uvod" class="content-section active">
                 <h2>Úvod</h2>
                 <p>Vítejte v technickém průvodci B737NG.</p>
             </section>
 
-            <!-- Kokpit -->
             <section id="kokpit" class="content-section">
                 <h2>Kokpit</h2>
-                <p>Klikněte na část kokpitu pro více informací:</p>
+                <p class="section-info">Klikněte na část kokpitu pro více informací:</p>
                 <div class="kokpit-container">
                     <svg viewBox="0 0 400 400" class="kokpit-svg">
                         <rect x="100" y="50" width="200" height="40" class="kokpit-element" data-panel="overhead"/>
@@ -44,72 +43,12 @@
                         <text x="200" y="290">Centrální</text>
                     </svg>
                 </div>
-                <div id="panel-info" class="info-box">
-                    Klikněte na část kokpitu pro zobrazení informací
-                </div>
+                <div id="panel-info" class="info-box"></div>
             </section>
 
-            <!-- Ovládání -->
             <section id="ovladani" class="content-section">
-                <h2>Ovládání B737NG</h2>
-                
+                <h2>Ovládání</h2>
                 <div class="controls-container">
-                    <!-- Overhead Panel -->
-                    <div class="control-group">
-                        <h3>Overhead Panel</h3>
-                        <div class="control-items">
-                            <div class="control-category">
-                                <h4>Elektrický systém</h4>
-                                <div class="control-item">
-                                    <div class="control-name">BATTERY</div>
-                                    <div class="control-description">
-                                        <ul>
-                                            <li>ON: Baterie připojena</li>
-                                            <li>OFF: Baterie odpojena</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="control-item">
-                                    <div class="control-name">STANDBY POWER</div>
-                                    <div class="control-description">
-                                        <ul>
-                                            <li>AUTO: Automatický přechod na záložní napájení</li>
-                                            <li>BAT: Napájení z baterie</li>
-                                            <li>OFF: Vypnuto</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="control-category">
-                                <h4>Hydraulický systém</h4>
-                                <div class="control-item">
-                                    <div class="control-name">ENG HYDRAULIC PUMPS</div>
-                                    <div class="control-description">
-                                        <ul>
-                                            <li>ON: Pumpy aktivovány</li>
-                                            <li>OFF: Pumpy deaktivovány</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="control-category">
-                                <h4>Palivový systém</h4>
-                                <div class="control-item">
-                                    <div class="control-name">FUEL PUMPS</div>
-                                    <div class="control-description">
-                                        <ul>
-                                            <li>ON: Pumpy aktivní</li>
-                                            <li>OFF: Pumpy vypnuty</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Main Panel Controls -->
                     <div class="control-group">
                         <h3>Hlavní ovládací prvky</h3>
                         <div class="control-items">
@@ -125,117 +64,37 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="control-item">
-                                    <div class="control-name">Rudder Pedals</div>
-                                    <div class="control-description">
-                                        <ul>
-                                            <li>Vlevo/Vpravo: Zatáčení</li>
-                                            <li>Špičky: Brzdy</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Thrust Controls -->
-                    <div class="control-group">
-                        <h3>Ovládání tahu</h3>
-                        <div class="control-items">
-                            <div class="control-category">
-                                <h4>Thrust Levers</h4>
-                                <div class="control-item">
-                                    <div class="control-name">Základní polohy</div>
-                                    <div class="control-description">
-                                        <ul>
-                                            <li>IDLE: Volnoběh</li>
-                                            <li>CLB: Stoupání</li>
-                                            <li>TO/GA: Vzlet/Nezdařené přistání</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Configuration -->
-                    <div class="control-group">
-                        <h3>Konfigurace letadla</h3>
-                        <div class="control-items">
-                            <div class="control-category">
-                                <h4>Vztlakové klapky</h4>
-                                <div class="control-item">
-                                    <div class="control-name">Flap Lever</div>
-                                    <div class="control-description">
-                                        <ul>
-                                            <li>UP: Zataženo</li>
-                                            <li>1-5: Vzlet</li>
-                                            <li>15-40: Přistání</li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Checklisty -->
             <section id="checklisty" class="content-section">
                 <h2>Checklisty</h2>
                 <div class="checklist-container">
                     <div class="checklist-group">
-                        <h3>Před spuštěním</h3>
+                        <h3>Před letem</h3>
                         <div class="checklist-items">
                             <label class="checklist-item">
                                 <input type="checkbox">
-                                <span>Dokumentace - ZKONTROLOVÁNA</span>
+                                <span>Palivové čerpadlo ON</span>
                             </label>
                             <label class="checklist-item">
                                 <input type="checkbox">
-                                <span>Oxygen - TESTOVÁN</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="checklist-group">
-                        <h3>Před vzletem</h3>
-                        <div class="checklist-items">
-                            <label class="checklist-item">
-                                <input type="checkbox">
-                                <span>Flaps - NASTAVENY</span>
-                            </label>
-                            <label class="checklist-item">
-                                <input type="checkbox">
-                                <span>Trim - NASTAVEN</span>
+                                <span>Generátor OFF</span>
                             </label>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Systémy -->
             <section id="systemy" class="content-section">
-                <h2>Systémy B737NG</h2>
+                <h2>Systémy</h2>
                 <div class="system-container">
                     <div class="system-item">
-                        <h3>Elektrický systém</h3>
-                        <p>Hlavní komponenty:</p>
-                        <ul>
-                            <li>2x Engine Generator</li>
-                            <li>APU Generator</li>
-                            <li>Baterie</li>
-                        </ul>
-                    </div>
-
-                    <div class="system-item">
                         <h3>Hydraulický systém</h3>
-                        <p>Tři nezávislé systémy:</p>
-                        <ul>
-                            <li>Systém A</li>
-                            <li>Systém B</li>
-                            <li>Standby systém</li>
-                        </ul>
+                        <p>Systém A, B a Standby</p>
                     </div>
                 </div>
             </section>
