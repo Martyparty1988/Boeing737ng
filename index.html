@@ -2,8 +2,7 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>B737NG Technický průvodce</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -11,94 +10,76 @@
     <div class="container">
         <h1>B737NG Technický průvodce</h1>
         
-        <nav class="nav-menu">
-            <a href="#" class="nav-btn active" onclick="showSection('uvod'); return false">Úvod</a>
-            <a href="#" class="nav-btn" onclick="showSection('kokpit'); return false">Kokpit</a>
-            <a href="#" class="nav-btn" onclick="showSection('ovladani'); return false">Ovládání</a>
-            <a href="#" class="nav-btn" onclick="showSection('checklisty'); return false">Checklisty</a>
-            <a href="#" class="nav-btn" onclick="showSection('systemy'); return false">Systémy</a>
-        </nav>
+        <div class="nav-menu">
+            <button onclick="showSection('uvod')" class="nav-btn active">Úvod</button>
+            <button onclick="showSection('kokpit')" class="nav-btn">Kokpit</button>
+            <button onclick="showSection('ovladani')" class="nav-btn">Ovládání</button>
+            <button onclick="showSection('checklisty')" class="nav-btn">Checklisty</button>
+            <button onclick="showSection('systemy')" class="nav-btn">Systémy</button>
+        </div>
 
-        <main>
-            <section id="uvod" class="content-section active">
-                <h2>Úvod</h2>
-                <p>Vítejte v technickém průvodci B737NG.</p>
-            </section>
+        <div id="uvod" class="content-section active">
+            <h2>Úvod</h2>
+            <p>Vítejte v technickém průvodci B737NG.</p>
+        </div>
 
-            <section id="kokpit" class="content-section">
-                <h2>Kokpit</h2>
-                <p class="section-info">Klikněte na část kokpitu pro více informací:</p>
-                <div class="kokpit-container">
-                    <svg viewBox="0 0 400 400" class="kokpit-svg">
-                        <rect x="100" y="50" width="200" height="40" class="kokpit-element" data-panel="overhead"/>
-                        <text x="200" y="75">Overhead</text>
-                        
-                        <rect x="100" y="150" width="80" height="80" class="kokpit-element" data-panel="captain"/>
-                        <text x="140" y="190">Kapitán</text>
-                        
-                        <rect x="220" y="150" width="80" height="80" class="kokpit-element" data-panel="fo"/>
-                        <text x="260" y="190">1. důstojník</text>
-                        
-                        <rect x="160" y="250" width="80" height="80" class="kokpit-element" data-panel="central"/>
-                        <text x="200" y="290">Centrální</text>
-                    </svg>
+        <div id="kokpit" class="content-section">
+            <h2>Kokpit</h2>
+            <p>Klikněte na část kokpitu pro více informací:</p>
+            <div class="kokpit-container">
+                <svg viewBox="0 0 400 400">
+                    <rect x="100" y="50" width="200" height="40" class="kokpit-element" data-panel="overhead"/>
+                    <text x="200" y="75">Overhead</text>
+                    <rect x="100" y="150" width="80" height="80" class="kokpit-element" data-panel="captain"/>
+                    <text x="140" y="190">Kapitán</text>
+                    <rect x="220" y="150" width="80" height="80" class="kokpit-element" data-panel="fo"/>
+                    <text x="260" y="190">1. důstojník</text>
+                    <rect x="160" y="250" width="80" height="80" class="kokpit-element" data-panel="central"/>
+                    <text x="200" y="290">Centrální</text>
+                </svg>
+            </div>
+            <div id="panel-info" class="info-box"></div>
+        </div>
+
+        <div id="ovladani" class="content-section">
+            <h2>Ovládání</h2>
+            <div class="control-group">
+                <h3>Hlavní ovládací prvky</h3>
+                <div class="control-item">
+                    <div class="control-name">Control Column</div>
+                    <ul>
+                        <li>Dopředu: Klesání</li>
+                        <li>Dozadu: Stoupání</li>
+                        <li>Do stran: Náklon</li>
+                    </ul>
                 </div>
-                <div id="panel-info" class="info-box"></div>
-            </section>
+            </div>
+        </div>
 
-            <section id="ovladani" class="content-section">
-                <h2>Ovládání</h2>
-                <div class="controls-container">
-                    <div class="control-group">
-                        <h3>Hlavní ovládací prvky</h3>
-                        <div class="control-items">
-                            <div class="control-category">
-                                <h4>Řízení letu</h4>
-                                <div class="control-item">
-                                    <div class="control-name">Control Column</div>
-                                    <div class="control-description">
-                                        <ul>
-                                            <li>Dopředu: Klesání</li>
-                                            <li>Dozadu: Stoupání</li>
-                                            <li>Do stran: Náklon</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div id="checklisty" class="content-section">
+            <h2>Checklisty</h2>
+            <div class="checklist-group">
+                <h3>Před letem</h3>
+                <div class="checklist-items">
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Palivové čerpadlo ON</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Generátor OFF</span>
+                    </label>
                 </div>
-            </section>
+            </div>
+        </div>
 
-            <section id="checklisty" class="content-section">
-                <h2>Checklisty</h2>
-                <div class="checklist-container">
-                    <div class="checklist-group">
-                        <h3>Před letem</h3>
-                        <div class="checklist-items">
-                            <label class="checklist-item">
-                                <input type="checkbox">
-                                <span>Palivové čerpadlo ON</span>
-                            </label>
-                            <label class="checklist-item">
-                                <input type="checkbox">
-                                <span>Generátor OFF</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="systemy" class="content-section">
-                <h2>Systémy</h2>
-                <div class="system-container">
-                    <div class="system-item">
-                        <h3>Hydraulický systém</h3>
-                        <p>Systém A, B a Standby</p>
-                    </div>
-                </div>
-            </section>
-        </main>
+        <div id="systemy" class="content-section">
+            <h2>Systémy</h2>
+            <div class="system-item">
+                <h3>Hydraulický systém</h3>
+                <p>Systém A, B a Standby</p>
+            </div>
+        </div>
     </div>
     <script src="app.js"></script>
 </body>
