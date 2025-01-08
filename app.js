@@ -1,7 +1,7 @@
 // Informace o částech kokpitu
 const panelInfo = {
     overhead: 'Overhead Panel: Obsahuje ovládací prvky elektrického, hydraulického a palivového systému.',
-    captain: 'Stanoviště kapitána: Hlavní letové přístroje a ovládací prvky.',
+    captain: 'Stanoviště kapitána: Hlavní letové přístroje včetně PFD a ND.',
     fo: 'Stanoviště 1. důstojníka: Sekundární sada letových přístrojů.',
     central: 'Centrální panel: Mode Control Panel (MCP) a další sdílené ovládací prvky.'
 };
@@ -12,6 +12,7 @@ function showSection(sectionId) {
     document.querySelectorAll('.content-section').forEach(section => {
         section.classList.remove('active');
     });
+    
     document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('active');
     });
@@ -28,9 +29,12 @@ function showSection(sectionId) {
     if (selectedBtn) {
         selectedBtn.classList.add('active');
     }
+
+    // Uložení aktuální sekce do localStorage
+    localStorage.setItem('activeSection', sectionId);
 }
 
-// Inicializace interaktivních prvků kokpitu
+// Inicializace kokpitu
 function initKokpit() {
     const elements = document.querySelectorAll('.kokpit-element');
     const infoBox = document.getElementById('panel-info');
@@ -51,7 +55,8 @@ function initChecklists() {
     
     // Načtení uložených stavů
     checkboxes.forEach(checkbox => {
-        const savedState = localStorage.getItem(`checklist-${checkbox.parentElement.textContent.trim()}`);
+        const itemText = checkbox.parentElement.textContent.trim();
+        const savedState = localStorage.getItem(`checklist-${itemText}`);
         if (savedState === 'true') {
             checkbox.checked = true;
         }
@@ -60,10 +65,8 @@ function initChecklists() {
     // Přidání event listenerů pro ukládání
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', () => {
-            localStorage.setItem(
-                `checklist-${checkbox.parentElement.textContent.trim()}`,
-                checkbox.checked
-            );
+            const itemText = checkbox.parentElement.textContent.trim();
+            localStorage.setItem(`checklist-${itemText}`, checkbox.checked);
         });
     });
 }
@@ -72,5 +75,12 @@ function initChecklists() {
 document.addEventListener('DOMContentLoaded', () => {
     initKokpit();
     initChecklists();
-    showSection('uvod');
+    
+    // Načtení poslední aktivní sekce
+    const lastActiveSection = localStorage.getItem('activeSection');
+    if (lastActiveSection) {
+        showSection(lastActiveSection);
+    } else {
+        showSection('uvod');
+    }
 });
