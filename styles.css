@@ -1,68 +1,337 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset a základní styly */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
     background-color: #f4f4f9;
-}
-
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-}
-
-nav {
-    margin: 10px 0;
-}
-
-nav button {
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #555;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-nav button:hover {
-    background-color: #777;
-}
-
-main {
-    padding: 20px;
-}
-
-h2 {
     color: #333;
 }
 
-.svg-container {
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header a navigace */
+header {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    color: #34495e;
+    margin-bottom: 0.8rem;
+}
+
+nav {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
-    transition: transform 0.3s ease-in-out;
+    gap: 10px;
 }
 
-.svg-container:hover {
-    transform: scale(1.05);
-}
-
-svg rect {
+.nav-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #eee;
     cursor: pointer;
-    transition: fill 0.3s ease-in-out;
+    font-size: 16px;
+    transition: background-color 0.2s;
 }
 
-svg rect:hover {
-    fill: #f39c12;
+.nav-btn:hover {
+    background-color: #ddd;
+}
+
+.nav-btn.active {
+    background-color: #2c3e50;
+    color: white;
+}
+
+/* Sekce obsahu */
+.section {
+    display: none;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.section.active {
+    display: block;
+}
+
+/* Kokpit */
+.cockpit-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 20px;
+}
+
+.cockpit-svg {
+    width: 100%;
+    height: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+}
+
+.panel-label {
+    font-size: 12px;
+    fill: #333;
+    font-family: Arial, sans-serif;
 }
 
 .info-box {
     margin-top: 20px;
-    padding: 10px;
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-    border-radius: 5px;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Checklisty */
+.checklist-container {
+    display: grid;
+    gap: 20px;
+}
+
+.checklist-category {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+.checklist-category h3 {
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e9ecef;
+    color: #2c3e50;
+}
+
+.checklist-items {
+    display: grid;
+    gap: 10px;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.checklist-item:hover {
+    background-color: #f1f3f5;
+}
+
+.checklist-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.checklist-item label {
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    flex: 1;
+}
+
+/* Systémy */
+.systems-container {
+    display: grid;
+    gap: 20px;
+}
+
+.system-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+.system-section h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.system-section p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.system-section ul {
+    list-style-type: none;
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.system-section ul ul {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-left: 2px solid #e9ecef;
+    padding-left: 15px;
+}
+
+.system-section li {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.system-section li::before {
+    content: "•";
+    color: #2c3e50;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.system-section ul ul li::before {
+    content: "◦";
+}
+
+/* Responzivní design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+
+    .nav-btn {
+        flex: 1 1 calc(50% - 10px);
+        min-width: 120px;
+    }
+
+    .checklist-container {
+        grid-template-columns: 1fr;
+    }
+
+    .system-section {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .nav-btn {
+        flex: 1 1 100%;
+    }
+
+    .section {
+        padding: 15px;
+    }
+
+    .checklist-item label {
+        font-size: 13px;
+    }
+
+    .system-section ul {
+        padding-left: 15px;
+    }
+}
+
+/* Interaktivní prvky SVG */
+.cockpit-svg g {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.cockpit-svg g:hover {
+    opacity: 0.8;
+}
+
+.cockpit-svg rect {
+    stroke-width: 1;
+}
+
+.cockpit-svg text {
+    pointer-events: none;
+}
+
+/* Animace pro přechody */
+.section {
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.section:not(.active) {
+    opacity: 0;
+}
+
+/* Doplňkové styly pro přístupnost */
+.nav-btn:focus,
+.checklist-item input[type="checkbox"]:focus,
+.checklist-item label:focus-within {
+    outline: 2px solid #2c3e50;
+    outline-offset: 2px;
+}
+
+/* Tiskové styly */
+@media print {
+    body {
+        background-color: white;
+    }
+
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+
+    header {
+        box-shadow: none;
+    }
+
+    .nav-btn:not(.active) {
+        display: none;
+    }
+
+    .section {
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+
+    .checklist-item input[type="checkbox"] {
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
 }
