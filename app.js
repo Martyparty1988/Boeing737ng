@@ -1,8 +1,7 @@
-// Jednoduchý skript pro interaktivní akce
-
-// 1) Otevření detailu kokpitu po kliknutí
+// Načítání detailů kokpitu s obrázky
 const clickableAreas = document.querySelectorAll('.cockpit-area');
 const detailBox = document.getElementById('cockpit-detail');
+const detailImage = detailBox.querySelector('.detail-image');
 const detailText = detailBox.querySelector('.detail-text');
 const closeBtn = detailBox.querySelector('[data-close]');
 
@@ -10,65 +9,41 @@ clickableAreas.forEach(area => {
   area.addEventListener('click', () => {
     const areaName = area.dataset.area;
     let popis = "";
+    let obrazek = "";
 
-    switch(areaName) {
+    switch (areaName) {
       case "overhead":
-        popis = "Overhead panel obsahuje přepínače pro elektrické, palivové a hydraulické systémy, světla a další.";
+        popis = "Overhead panel obsahuje přepínače pro elektrické, palivové a hydraulické systémy.";
+        obrazek = "https://upload.wikimedia.org/wikipedia/commons/8/86/Boeing_737-800_Overhead_Panel.jpg";
         break;
       case "captain":
-        popis = "Stanoviště kapitána zahrnuje hlavní letové displeje (PFD, ND), primární řízení a FMC.";
-        break;
-      case "fo":
-        popis = "Stanoviště prvního důstojníka je zrcadlem kapitánova, obsahuje duální přístroje a záložní systémy.";
+        popis = "Stanoviště kapitána zahrnuje hlavní letové displeje a FMC.";
+        obrazek = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Boeing_737-800_interior_cockpit.jpg";
         break;
       case "central":
-        popis = "Centrální panel obsahuje rádia, navigační panely, EICAS displej (spodní část) a další důležité ukazatele.";
+        popis = "Centrální panel obsahuje rádia, navigační panely a další ukazatele.";
+        obrazek = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Boeing_737_Central_Panel.jpg";
+        break;
+      case "fo":
+        popis = "Stanoviště prvního důstojníka zrcadlí stanoviště kapitána.";
+        obrazek = "https://upload.wikimedia.org/wikipedia/commons/5/5d/Boeing_737-800_copilot_seat.jpg";
         break;
       default:
         popis = "Neznámá oblast kokpitu.";
     }
 
     detailText.textContent = popis;
+    if (obrazek) {
+      detailImage.src = obrazek;
+      detailImage.hidden = false;
+    } else {
+      detailImage.hidden = true;
+    }
     detailBox.hidden = false;
   });
 });
 
-// Zavření detailu kokpitu
+// Zavření detailního okna
 closeBtn.addEventListener('click', () => {
   detailBox.hidden = true;
-});
-
-// 2) Toggly pro ovládací prvky a systémy
-const toggleButtons = document.querySelectorAll('[data-toggle]');
-toggleButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const sectionToToggle = btn.getAttribute('data-toggle');
-    let content = null;
-
-    if (sectionToToggle === 'controls') {
-      content = document.getElementById('controls-details');
-    } else if (sectionToToggle === 'systems') {
-      content = document.getElementById('systems-details');
-    }
-
-    if (content) {
-      content.hidden = !content.hidden;
-      btn.textContent = content.hidden 
-        ? "Zobrazit podrobnosti"
-        : "Skrýt podrobnosti";
-    }
-  });
-});
-
-// 3) Checkboxy pro checklisty
-const checklistInputs = document.querySelectorAll('input[type="checkbox"][data-checklist]');
-checklistInputs.forEach(input => {
-  input.addEventListener('change', () => {
-    // Pouze příklad – v reálné aplikaci byste ukládali stav do localStorage a podobně
-    if (input.checked) {
-      console.log(`Položka (${input.dataset.checklist}) splněna`);
-    } else {
-      console.log(`Položka (${input.dataset.checklist}) je znovu aktivní`);
-    }
-  });
 });
