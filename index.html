@@ -24,11 +24,10 @@
     <section id="cockpit">
       <h2>1. Interaktivní kokpit</h2>
       <p>
-        Níže je jednoduchá textová „mapa“ kokpitu Boeingu 737 NG. Kliknutím na vybrané části
-        zobrazíte detailnější popis.
+        Níže je textová „mapa“ kokpitu Boeingu 737 NG. Kliknutím na vybrané části
+        zobrazíte detailnější popis. Obrázky jsou načítány z externích zdrojů.
       </p>
       <div class="cockpit-map">
-        <!-- Textová reprezentace schématu kokpitu -->
         <div class="cockpit-row">
           <span class="cockpit-area clickable" data-area="overhead">[ Overhead panel ]</span>
         </div>
@@ -40,6 +39,7 @@
       </div>
       <div id="cockpit-detail" class="detail-box" hidden>
         <h3>Detail kokpitu</h3>
+        <img src="" alt="Obrázek kokpitu" class="detail-image" hidden>
         <p class="detail-text">Zde se zobrazí bližší informace k vybrané oblasti.</p>
         <button class="close-btn" data-close>✕ Zavřít</button>
       </div>
@@ -49,94 +49,41 @@
     <section id="controls">
       <h2>2. Ovládací prvky</h2>
       <ul>
-        <li>Hlavní řízení (Control Column, Rudder Pedals)</li>
-        <li>Ovládání výkonu (Thrust Levers, Speedbrake)</li>
-        <li>Autopilot (MCP Panel)</li>
-        <li>Konfigurace letadla (Flaps, Landing Gear)</li>
+        <li>
+          Hlavní řízení (Control Column, Rudder Pedals) - 
+          <a href="https://commons.wikimedia.org/wiki/File:Boeing_737-800_interior_cockpit.jpg" target="_blank">Obrázek kokpitu</a>
+        </li>
+        <li>
+          Ovládání výkonu (Thrust Levers, Speedbrake) - 
+          <a href="https://en.wikipedia.org/wiki/File:Boeing737Throttle.jpg" target="_blank">Ovládání výkonu</a>
+        </li>
+        <li>
+          Autopilot (MCP Panel) - 
+          <a href="https://commons.wikimedia.org/wiki/File:737mcp.jpg" target="_blank">MCP Panel</a>
+        </li>
+        <li>
+          Konfigurace letadla (Flaps, Landing Gear) - 
+          <a href="https://en.wikipedia.org/wiki/File:Boeing_737NG_landing_gear.jpg" target="_blank">Podvozek</a>
+        </li>
       </ul>
-      <button class="toggle-btn" data-toggle="controls">Zobrazit podrobnosti</button>
-      <div class="toggle-content" id="controls-details" hidden>
-        <p>
-          <strong>Hlavní řízení:</strong> Slouží k ovládání náklonu (roll) a náběhu (pitch) letounu.
-          <br>
-          <strong>Rudder Pedals:</strong> Ovládají směr (yaw) letounu.
-        </p>
-        <p>
-          <strong>Thrust Levers:</strong> Řídí výkon motorů.
-          <br>
-          <strong>Speedbrake:</strong> Slouží ke snížení vztlaku a zvýšení odporu.
-        </p>
-        <p>
-          <strong>Autopilot (MCP Panel):</strong> Nastavení režimů letu (Heading, Altitude, Speed atd.).
-        </p>
-        <p>
-          <strong>Flaps a Landing Gear:</strong> Konfigurace křídel pro různé fáze letu
-          a ovládání podvozku.
-        </p>
-      </div>
-    </section>
-
-    <!-- Elektronické checklisty -->
-    <section id="checklists">
-      <h2>3. Elektronické checklisty</h2>
-      <p>
-        Pro různé fáze letu (před letem, během letu, po přistání) můžete využít naše
-        interaktivní checklisty. U každého kroku si zaškrtněte, zda je splněn.
-      </p>
-
-      <div class="checklist">
-        <h3>Před letem</h3>
-        <ul>
-          <li><label><input type="checkbox" data-checklist="preflight"> Zkontrolovat palivo</label></li>
-          <li><label><input type="checkbox" data-checklist="preflight"> Nastavit FMC</label></li>
-          <li><label><input type="checkbox" data-checklist="preflight"> Projít overhead panel</label></li>
-        </ul>
-      </div>
-
-      <div class="checklist">
-        <h3>Během letu</h3>
-        <ul>
-          <li><label><input type="checkbox" data-checklist="inflight"> Zkontrolovat výšku a rychlost</label></li>
-          <li><label><input type="checkbox" data-checklist="inflight"> Sledovat stav motorů</label></li>
-        </ul>
-      </div>
-
-      <div class="checklist">
-        <h3>Po přistání</h3>
-        <ul>
-          <li><label><input type="checkbox" data-checklist="postflight"> Vypnout nepotřebné systémy</label></li>
-          <li><label><input type="checkbox" data-checklist="postflight"> Zaznamenat letové údaje</label></li>
-        </ul>
-      </div>
     </section>
 
     <!-- Systémy letadla -->
     <section id="systems">
-      <h2>4. Systémy letadla</h2>
+      <h2>3. Systémy letadla</h2>
       <ul>
-        <li>Hydraulický systém</li>
-        <li>Elektrický systém</li>
-        <li>Palivový systém</li>
-        <li>Klimatizace a přetlakování</li>
-      </ul>
-      <button class="toggle-btn" data-toggle="systems">Zobrazit detaily</button>
-      <div class="toggle-content" id="systems-details" hidden>
-        <p><strong>Hydraulický systém:</strong> Zajišťuje ovládání klíčových prvků jako jsou klapky, brzdy a řízení.</p>
-        <p><strong>Elektrický systém:</strong> Napájí avioniku, osvětlení, a řadu dalších systémů na palubě.</p>
-        <p><strong>Palivový systém:</strong> Systém nádrží a čerpadel pro zásobování motorů palivem.</p>
-        <p><strong>Klimatizace a přetlakování:</strong> Udržuje pohodlnou teplotu a tlak v kabině.</p>
-      </div>
-    </section>
-
-    <!-- Plánovaná vylepšení -->
-    <section>
-      <h2>Plánovaná vylepšení</h2>
-      <ul>
-        <li>3D model kokpitu</li>
-        <li>Detailnější animace ovládacích prvků</li>
-        <li>Rozšířená databáze systémů</li>
-        <li>Exportování checklistů</li>
-        <li>Vícejazyčná podpora</li>
+        <li>Hydraulický systém - 
+          <a href="https://commons.wikimedia.org/wiki/File:Boeing_737_Hydraulic_Panel.jpg" target="_blank">Schéma hydrauliky</a>
+        </li>
+        <li>Elektrický systém - 
+          <a href="https://commons.wikimedia.org/wiki/File:B737_electric_panel.jpg" target="_blank">Elektrický panel</a>
+        </li>
+        <li>Palivový systém - 
+          <a href="https://commons.wikimedia.org/wiki/File:B737_fuel_panel.jpg" target="_blank">Palivový panel</a>
+        </li>
+        <li>Klimatizace a přetlakování - 
+          <a href="https://commons.wikimedia.org/wiki/File:B737_AC_panel.jpg" target="_blank">AC Panel</a>
+        </li>
       </ul>
     </section>
   </main>
